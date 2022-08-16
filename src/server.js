@@ -1,6 +1,7 @@
 const express = require('express')
 const server = express()
 const route = require('./route')
+const http = require('http')
 const path = require('path')
 
 server.set('view engine', 'ejs')
@@ -13,4 +14,8 @@ server.use(route)
 
 server.use(express.static('public'))
 
-server.listen(3000, () => console.log('RODANDO'))
+server.set('port', process.env.PORT || 3000)
+
+http.createServer(server).listen(server.get('port'), () => {
+  console.log(`Servidor rodando na porta ${server.get('port')}`)
+})
