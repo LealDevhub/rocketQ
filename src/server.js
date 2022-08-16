@@ -1,8 +1,8 @@
 const express = require('express')
-const server = express()
 const route = require('./route')
 const http = require('http')
 const path = require('path')
+const server = express()
 
 server.set('view engine', 'ejs')
 
