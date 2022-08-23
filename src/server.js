@@ -14,5 +14,5 @@ server.use(express.urlencoded({ extended: true }))
 server.use(route)
 
 server.listen(process.env.PORT || 8080, function () {
-  console.log('RODANDO', this.address().port, app.settings.env)
+  console.log('RODANDO', this.address().port, server.settings.env)
 })
