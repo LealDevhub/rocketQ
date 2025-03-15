@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const express = require('express')
-const route = require('./route')
+const route = require('./route.js')
 const path = require('path')
 const server = express()
 
@@ -9,7 +9,7 @@ server.set('view engine', 'ejs')
 
 server.use(express.static(path.join(__dirname, '../public')));
 
-server.set('views', path.join(__dirname, 'views'))
+server.set('views', path.join(__dirname,'views'))
 
 server.use(express.urlencoded({ extended: true }))
 

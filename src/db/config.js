@@ -4,7 +4,7 @@ const { open } = require('sqlite');
 const fs = require('fs');
 const path = require('path');
 
-const DB_PATH = path.join(__dirname, 'db', 'rocketq.sqlite');
+const DB_PATH = path.join(process.env.TMPDIR || __dirname, 'rocketq.sqlite');
 
 async function downloadDatabase() {
   try {
