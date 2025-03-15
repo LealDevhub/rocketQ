@@ -8,13 +8,14 @@ const DB_PATH = path.join(__dirname, 'db', 'rocketq.sqlite');
 
 async function downloadDatabase() {
   try {
-    const blob = await get('https://your-vercel-blob-url/rocketq.sqlite');
+    const blob = await get('rocketq.sqlite');
     if (blob) {
-      fs.writeFileSync(DB_PATH, blob.body);
+      const data = await blob.arrayBuffer();
+      fs.writeFileSync(DB_PATH, Buffer.from(data));
       console.log('Banco de dados SQLite baixado com sucesso.');
     }
   } catch (error) {
-    console.log('Erro ao baixar banco de dados:', error);
+    console.log('Banco de dados ainda não existe no Vercel Blob.');
   }
 }
 
@@ -25,6 +26,11 @@ async function uploadDatabase() {
   } catch (error) {
     console.error('Erro ao fazer upload do banco de dados:', error);
   }
+}
+
+// Certifica-se de que a pasta do banco de dados existe
+if (!fs.existsSync(path.dirname(DB_PATH))) {
+  fs.mkdirSync(path.dirname(DB_PATH), { recursive: true });
 }
 
 // Baixa o banco antes de abrir a conexão

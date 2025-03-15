@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express')
 const route = require('./src/route.js')
 const path = require('path')
@@ -5,7 +7,7 @@ const server = express()
 
 server.set('view engine', 'ejs')
 
-app.use(express.static(path.join(__dirname, '../public')));
+server.use(express.static(path.join(__dirname, '../public')));
 
 server.set('views', path.join(__dirname, 'views'))
 
