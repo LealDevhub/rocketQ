@@ -1,4 +1,4 @@
-const Database = require('./config')
+const Database = require('./config.js')
 
 const initDb = {
   async init() {
